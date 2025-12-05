@@ -1,177 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevOps Engineer — Portfolio</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DevOps Challenge</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: "Segoe UI", Roboto, Arial, sans-serif;
-            background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
-            color: #f2f2f2;
-        }
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: radial-gradient(circle at top, #0a0f24, #000);
+        font-family: "Segoe UI", sans-serif;
+        color: #e6e6e6;
+        overflow: hidden;
+    }
 
-        /* Hero Section */
-        .hero {
-            padding: 80px 20px;
-            text-align: center;
-            background: linear-gradient(135deg, #007cf0, #00dfd8);
-            color: white;
-        }
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-        .hero p {
-            font-size: 1.2rem;
-        }
+    /* Floating DevOps-themed shapes */
+    .shape {
+        position: absolute;
+        border-radius: 50%;
+        animation: float 12s infinite ease-in-out;
+    }
 
-        /* Content Container */
-        .container {
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 20px;
-        }
+    @keyframes float {
+        0% { transform: translateY(0px) scale(1); opacity: 0.3; }
+        50% { transform: translateY(-40px) scale(1.25); opacity: 0.7; }
+        100% { transform: translateY(0px) scale(1); opacity: 0.3; }
+    }
 
-        .section {
-            background: #1f1f1f;
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-        }
+    .kube  { background: rgba(0,150,255,0.12); width: 180px; height: 180px; top: 12%; left: 70%; filter: blur(12px); }
+    .docker{ background: rgba(0,200,255,0.14); width: 260px; height: 260px; top: 55%; left: 5%; filter: blur(18px); }
+    .cicd  { background: rgba(255,120,0,0.14); width: 160px; height: 160px; top: 35%; left: 30%; filter: blur(14px); }
+    .devops{ background: rgba(0,255,150,0.16); width: 310px; height: 310px; top: 70%; left: 65%; filter: blur(22px); }
 
-        .section h2 {
-            color: #00dfd8;
-            margin-bottom: 10px;
-        }
+    .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 85%;
+        text-align: center;
+    }
 
-        /* Icon Row */
-        .icons {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 15px;
-        }
-        .icon-card {
-            background: #262626;
-            padding: 20px;
-            border-radius: 12px;
-            width: 120px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: transform 0.2s ease;
-        }
-        .icon-card:hover {
-            transform: scale(1.1);
-        }
-        .icon-card img {
-            width: 50px;
-            height: 50px;
-        }
-        .icon-card span {
-            display: block;
-            margin-top: 10px;
-            font-size: 0.9rem;
-            color: #a8a8a8;
-        }
+    #title {
+        font-size: 2.8rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 40px;
+        background: linear-gradient(to right, #00d2ff, #3a7bd5);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            margin-top: 40px;
-        }
-    </style>
+    .options {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+    }
+
+    .card {
+        flex: 1;
+        padding: 35px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.12);
+        backdrop-filter: blur(15px);
+        border-radius: 18px;
+        min-height: 180px;
+        font-size: 1.5rem;
+        box-shadow: 0 0 25px rgba(0,150,255,0.2);
+        transition: 0.35s ease;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 40px rgba(0,150,255,0.35);
+    }
+
+    .label {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #00d2ff;
+    }
+</style>
 </head>
+
 <body>
 
-    <!-- HERO -->
-    <div class="hero">
-        <h1>DevOps Engineer</h1>
-        <h4>Version 2.0</h4>
-        <p>Automation | CI/CD | Cloud | Containers | Reliability Engineering</p>
-    </div>
+<!-- Floating abstract shapes -->
+<div class="shape kube"></div>
+<div class="shape docker"></div>
+<div class="shape cicd"></div>
+<div class="shape devops"></div>
 
-    <div class="container">
+<div class="container">
+    <div id="title">DevOps Challenge</div>
 
-        <!-- About -->
-        <div class="section">
-            <h2>👋 About Me</h2>
-            <p>
-                I'm a DevOps engineer passionate about building scalable automation pipelines,  
-                containerized workloads, infrastructure as code, and cloud-native deployments.  
-                I enjoy turning manual, error-prone processes into efficient automated systems.
-            </p>
+    <div class="options">
+        <div class="card" id="leftCard">
+            <div class="label">Statement A</div>
+            <div id="statementA">Statement A goes here</div>
         </div>
 
-        <!-- DevOps Stack -->
-        <div class="section">
-            <h2>🛠️ My DevOps Toolkit</h2>
-            <div class="icons">
-                <div class="icon-card">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg">
-                    <span>Docker</span>
-                </div>
-                <div class="icon-card">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg">
-                    <span>Kubernetes</span>
-                </div>
-                <div class="icon-card">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg">
-                    <span>GitHub</span>
-                </div>
-                <div class="icon-card">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg">
-                    <span>GCP</span>
-                </div>
-                <div class="icon-card">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansible/ansible-original.svg">
-                    <span>Ansible</span>
-                </div>
-                <div class="icon-card">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg">
-                    <span>Jenkins</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- CI/CD Philosophy -->
-        <div class="section">
-            <h2>🔄 My CI/CD Philosophy</h2>
-            <p>
-                I believe CI/CD is not just tooling—it’s discipline.  
-                Every commit should move the system forward without fear of breaking production.  
-                My approach focuses on:
-            </p>
-            <ul>
-                <li>Clean, repeatable build pipelines</li>
-                <li>Automated testing gates</li>
-                <li>Immutable containerized deployments</li>
-                <li>Security + quality checks integrated early</li>
-                <li>Zero-downtime releases with Kubernetes</li>
-            </ul>
-        </div>
-
-        <!-- Fun DevOps Vibe -->
-        <div class="section">
-            <h2>💻 My Workflow Vibe</h2>
-            <p>
-                Monitoring dashboards glowing at 2 AM.  
-                Pipelines running smoother than butter.  
-                Clusters scaling automatically.  
-                Logs flowing like poetry.  
-                That’s the energy I bring to DevOps.
-            </p>
+        <div class="card" id="rightCard">
+            <div class="label">Statement B</div>
+            <div id="statementB">Statement B goes here</div>
         </div>
     </div>
-
-    <footer>
-        © 2025 DevOps Engineer — CI/CD | Cloud | Automation
-    </footer>
+</div>
 
 </body>
 </html>
