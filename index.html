@@ -1,112 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DevOps Challenge</title>
 
 <style>
     body {
         margin: 0;
-        padding: 0;
-        background: radial-gradient(circle at top, #0a0f24, #000);
+        background: #0b0f19;
         font-family: "Segoe UI", sans-serif;
-        color: #e6e6e6;
+        color: #e9eefc;
         overflow: hidden;
     }
 
-    /* Floating DevOps-themed shapes */
-    .shape {
+    /* Animated glowing background gradients */
+    .bg-glow {
         position: absolute;
+        width: 600px;
+        height: 600px;
         border-radius: 50%;
-        animation: float 12s infinite ease-in-out;
+        filter: blur(120px);
+        opacity: 0.35;
+        animation: drift 18s infinite alternate ease-in-out;
+        z-index: -10;
     }
 
-    @keyframes float {
-        0% { transform: translateY(0px) scale(1); opacity: 0.3; }
-        50% { transform: translateY(-40px) scale(1.25); opacity: 0.7; }
-        100% { transform: translateY(0px) scale(1); opacity: 0.3; }
+    .blue { background: #3a7bd5; top: -10%; left: -10%; }
+    .teal { background: #2bd9d9; top: 40%; left: 70%; animation-duration: 22s; }
+    .green { background: #15ff99; top: 70%; left: 20%; animation-duration: 26s; }
+    .orange { background: #ff8f3c; top: 10%; left: 60%; animation-duration: 20s; }
+
+    @keyframes drift {
+        from { transform: translateY(0px) translateX(0px); }
+        to { transform: translateY(80px) translateX(40px); }
     }
 
-    .kube  { background: rgba(0,150,255,0.12); width: 180px; height: 180px; top: 12%; left: 70%; filter: blur(12px); }
-    .docker{ background: rgba(0,200,255,0.14); width: 260px; height: 260px; top: 55%; left: 5%; filter: blur(18px); }
-    .cicd  { background: rgba(255,120,0,0.14); width: 160px; height: 160px; top: 35%; left: 30%; filter: blur(14px); }
-    .devops{ background: rgba(0,255,150,0.16); width: 310px; height: 310px; top: 70%; left: 65%; filter: blur(22px); }
-
-    .container {
+    /* Kubernetes hexagon icons floating */
+    .kube-hex {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 85%;
-        text-align: center;
+        width: 120px;
+        height: 120px;
+        background: rgba(0,140,255,0.15);
+        border: 2px solid rgba(0,150,255,0.35);
+        clip-path: polygon(25% 5%, 75% 5%, 95% 50%, 75% 95%, 25% 95%, 5% 50%);
+        animation: floatHex 12s infinite ease-in-out;
+        filter: blur(1px);
     }
 
+    @keyframes floatHex {
+        0% { transform: translateY(0px) rotate(0deg); opacity: 0.5; }
+        50% { transform: translateY(-40px) rotate(20deg); opacity: 0.8; }
+        100% { transform: translateY(0px) rotate(0deg); opacity: 0.5; }
+    }
+
+    .hex1 { top: 20%; left: 10%; }
+    .hex2 { top: 60%; left: 80%; animation-delay: -2s; }
+    .hex3 { top: 75%; left: 35%; animation-delay: -4s; }
+
+    /* Title */
     #title {
-        font-size: 2.8rem;
-        font-weight: 700;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        margin-bottom: 40px;
+        text-align: center;
+        font-size: 3.2rem;
+        font-weight: 800;
+        margin-top: 60px;
+        letter-spacing: 4px;
         background: linear-gradient(to right, #00d2ff, #3a7bd5);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        text-transform: uppercase;
     }
 
-    .options {
+    /* Container for statements */
+    .wrapper {
         display: flex;
-        justify-content: space-between;
-        gap: 30px;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 80px;
     }
 
     .card {
-        flex: 1;
+        width: 40%;
+        background: rgba(255,255,255,0.04);
         padding: 35px;
-        background: rgba(255,255,255,0.06);
-        border: 1px solid rgba(255,255,255,0.12);
-        backdrop-filter: blur(15px);
-        border-radius: 18px;
-        min-height: 180px;
-        font-size: 1.5rem;
-        box-shadow: 0 0 25px rgba(0,150,255,0.2);
-        transition: 0.35s ease;
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,0.08);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 0 40px rgba(0,150,255,0.25);
+        transition: 0.3s ease;
     }
 
     .card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 40px rgba(0,150,255,0.35);
+        transform: translateY(-10px);
+        box-shadow: 0 0 50px rgba(0,200,255,0.5);
     }
 
     .label {
-        font-size: 1.2rem;
+        font-size: 1.6rem;
         font-weight: bold;
-        margin-bottom: 10px;
-        color: #00d2ff;
+        color: #00c3ff;
+        margin-bottom: 12px;
+    }
+
+    .text {
+        font-size: 1.4rem;
+        opacity: 0.9;
     }
 </style>
-</head>
 
+</head>
 <body>
 
-<!-- Floating abstract shapes -->
-<div class="shape kube"></div>
-<div class="shape docker"></div>
-<div class="shape cicd"></div>
-<div class="shape devops"></div>
+<!-- Glowing animated background blobs -->
+<div class="bg-glow blue"></div>
+<div class="bg-glow teal"></div>
+<div class="bg-glow green"></div>
+<div class="bg-glow orange"></div>
 
-<div class="container">
-    <div id="title">DevOps Challenge</div>
+<!-- Floating Kubernetes hexagons -->
+<div class="kube-hex hex1"></div>
+<div class="kube-hex hex2"></div>
+<div class="kube-hex hex3"></div>
 
-    <div class="options">
-        <div class="card" id="leftCard">
-            <div class="label">Statement A</div>
-            <div id="statementA">Statement A goes here</div>
-        </div>
+<!-- Title -->
+<div id="title">DevOps Challenge</div>
 
-        <div class="card" id="rightCard">
-            <div class="label">Statement B</div>
-            <div id="statementB">Statement B goes here</div>
-        </div>
+<!-- Two statement cards -->
+<div class="wrapper">
+    <div class="card">
+        <div class="label">Statement A</div>
+        <div class="text" id="statementA">Statement A goes here</div>
+    </div>
+
+    <div class="card">
+        <div class="label">Statement B</div>
+        <div class="text" id="statementB">Statement B goes here</div>
     </div>
 </div>
 
